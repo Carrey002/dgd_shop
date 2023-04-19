@@ -17,6 +17,15 @@
 	import homeGrid from './components/home-grid.vue'
 	import homeFlow from './components/home-flow.vue'
 	import {ref} from 'vue'
+	
+	
+	import { getHomeList} from '@/api/api_method.js'
+	const getHome = async ()=>{
+		console.log('getHomeList')
+		let arr = await getHomeList()
+		console.log(arr)	
+	}
+	getHome()
 	let tabIndex = ref(0)
 	const getTab = (id) => {
 		console.log(id)

@@ -1,9 +1,8 @@
-import axios from "./api"
-// const baseUrl = "http://47.113.230.184:5566"
-export function getHomeList() {
-	return axios({
-		url: '/by/hotList?page=1',
-		method: 'GET'
-	})
-	
-};
+import axios from "./axios.js"
+// 首页列表
+export function getHomeList (page =1){
+    return axios({
+        method: 'get',
+        url: "/hotList?page=" + page
+    })
+}
