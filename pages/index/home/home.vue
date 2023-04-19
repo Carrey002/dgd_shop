@@ -26,7 +26,10 @@
 	import {
 		getHome
 	} from "../../../api/api_method.js"
-
+	import {
+			onReachBottom,
+			onLoad,
+		 } from '@dcloudio/uni-app';
 	let tabIndex = ref(0)
 	const getTab = (id) => {
 		console.log(id)
@@ -50,6 +53,9 @@
 		arrlist.value.unshift(obj1)
 	}
 	getdata()
+	onReachBottom(()=>{
+		console.log("触底了");
+	})
 </script>
 
 <style lang="scss" scoped>

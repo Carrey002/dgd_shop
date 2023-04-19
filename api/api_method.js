@@ -10,10 +10,13 @@ export function getHome() {
 		method: 'GET'
 	})
 };
-export function getHotlist(page) {
-	return ajax({
-		url: baseUrl+'hotlist?page='+page,
-		method: 'GET'
-	})
-};
+// 首页列表
+export function getHomeList (page){
+    return axios({
+        method: 'get',
+        url: "/hotList?page=" + page
+    })
+}
+
+
 
