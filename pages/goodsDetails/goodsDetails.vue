@@ -2,20 +2,20 @@
 	<view>
 		<goods-swiper></goods-swiper>
 		<view class="goods_title boxs_bb m_b_24 bgc_fff">
-			<view class="m_b_8 color_333 font_32 font_bold">邂逅香水柔情黄清新女士持久淡香水</view>
-			<view class="m_b_16 color_999 font_28">销量99999+</view>
 			<view class="flex m_b_24 flex-aife">
 				<view class="price_color">
-					<text class="font_36">¥</text><text class="font_64 m_r_24">277</text>
+					<text class="font_36">¥</text><text class="font_64 m_r_24">{{arr.title}}</text>
 				</view>
-				<text class="font_36 color_999 m_b_12" style="text-decoration:line-through !important;">¥477</text>
+
 			</view>
+			<view class="m_b_8 color_333 font_32 font_bold">￥{{arr.priceStr}}</view>
+			<view class="m_b_16 color_999 font_28">销量99999+</view>
+
 		</view>
 		<view class="bgc_fff font_28 color_333 m_b_24">
 			<view @tap="showSku" class="goods_item_box boxs_bb flex-aic flexr-jsb">
 				<text class="goods_item_cla color_999">选择</text><text class="flex-fitem">柔情黄/50ml</text>
-				<image class="goods_item_icon"
-					src="http://www.liwanying.top/applate-icon/gengduo.png" mode=""></image>
+				<image class="goods_item_icon" src="http://www.liwanying.top/applate-icon/gengduo.png" mode=""></image>
 			</view>
 			<view class="goods_item_box boxs_bb">
 				<text class="goods_item_cla color_999">类型</text><text>实物</text>
@@ -27,12 +27,9 @@
 				<text class="goods_item_cla color_999">运费</text><text>免运费<text class="color_eee">｜</text>48小时内发货</text>
 			</view>
 		</view>
-		<goods-evaluate></goods-evaluate>
-		<view class="bb_title font_28 color_999 flex-aic flexr-jsc">
-			<view class="bgc_ddd"></view><text>宝贝详情</text>
-			<view class="bgc_ddd"></view>
-		</view>
-		<rich-text style="width: 100%;" :nodes="htmlSnip" />
+
+
+		<rich-text style="width: 100%;" :nodes="imgarr" />
 		<goods-sku @toOrder="toOrder" ref="goodsSkuRef"></goods-sku>
 		<goods-nav @add="goodsAdd" @pay="goodsTapPay"></goods-nav>
 	</view>
@@ -42,20 +39,28 @@
 	import goodsSwiper from './components/goods-swiper.vue'
 	import goodsNav from './components/goods-nav.vue'
 	import goodsSku from './components/goods-sku.vue'
-	import goodsEvaluate from './components/goods-evaluate.vue'
+	import {
+		getshopxq
+	} from '@/api/api_method.js'
 	import {
 		ref
 	} from "vue";
 	import {
-		getdetail 
-	} from "../../api/api_method.js"
+		onReachBottom,
+		onLoad,
+	} from '@dcloudio/uni-app';
+	// 
+	let arr = ref([])
+	let imgarr = ref()
+	onLoad(async (options) => {
+		console.log(options);
+		let res = await getshopxq(options.id)
+		console.log(res.data);
+		arr.value = res.data[0]
+	})
+
 	let goodsSkuRef = ref()
-	const htmlSnip =
-	`<div style="text-align:center;"><img style="width: 100%;" src="https://img1.baidu.com/it/u=1147992555,4285883113&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"/></div>
-	<div class="div_class">
-	  <h1>链接啊收到啦收到啦就睡了多久</h1>
-	</div>
-	`
+
 	const showSku = () => {
 		goodsSkuRef.value.showSku()
 	}
@@ -63,8 +68,8 @@
 		console.log('goodsAdd')
 		uni.showToast({
 			title: '添加成功，在购物车等亲!',
-			mask:true,
-			icon:'none'
+			mask: true,
+			icon: 'none'
 		});
 	}
 	const toOrder = () => {
@@ -74,10 +79,6 @@
 	}
 	const goodsTapPay = () => {
 		goodsSkuRef.value.showSku()
-	}
-	const detail = aasync ()=>{
-		let zt = await getdetail(10)
-		console.log(zt);
 	}
 </script>
 
@@ -95,6 +96,13 @@
 		background: linear-gradient(360deg, #FF3636 0%, #FF6600 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+	}
+
+	.font_64 {
+		font-size: 32rpx;
+		 overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 
 	.goods_item_box {

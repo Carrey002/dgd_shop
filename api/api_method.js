@@ -17,6 +17,11 @@ export function getHomeList (page){
         url: "/hotList?page=" + page
     })
 }
-
+export function getshopxq(id){
+	return axios({
+		url: '/detail?goodId='+id,
+		method: 'GET'
+	})
+}
 
 

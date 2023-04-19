@@ -35,7 +35,12 @@
 		console.log(zt.data);
 		list.value = zt.data
 	}
-	
+	let todetail = (e)=>{
+		console.log(e);
+		uni.navigateTo({
+			url:'/pages/goodsDetails/goodsDetails?id='+e
+		})
+	}
 	onLoad(()=>{
 		getlist()
 	})
