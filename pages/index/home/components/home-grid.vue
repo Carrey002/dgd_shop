@@ -3,33 +3,25 @@
 			height: 4 <= 4 ? '170rpx' : '360rpx'
 		}" >
 			<swiper-item class="swiper-item">
-				<lyz-grid @tapGrid="tapGrid" :border="false" :columnNum="4"
-					:columns="[{
-						title:'美妆个护',
-						icon:'http://www.liwanying.top/applate-icon/meizhuang2x.png'
-					},
-					{
-						title:'母婴',
-						icon:'http://www.liwanying.top/applate-icon/muying2x.png'
-					},{
-						title:'内衣',
-						icon:'http://www.liwanying.top/applate-icon/neiyi2x.png'
-					},{
-						title:'女装',
-						icon:'http://www.liwanying.top/applate-icon/nvzhuang2x.png'
-					}]">
+				<lyz-grid @tapGrid="tapGrid" :border="false" :columnNum="5"
+					:columns="listarr">
 				</lyz-grid>
 			</swiper-item>
 		</swiper>
 </template>
 
 <script setup>
+	import {ref} from "vue"
+	import {getHome} from "../../../../api/api_method.js"
 	const tapGrid = () => {
-		uni.showToast({
-			icon:'none',
-			title: '正在开发中...'
-		})
+		
 	}
+	let listarr = ref([])
+	let fn =async()=>{
+		let list =await getHome()
+		listarr.value = list.data.homeData.operationNavigation
+	}
+	fn()
 </script>
 
 <style lang="scss" scoped>

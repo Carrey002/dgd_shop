@@ -1,29 +1,6 @@
 <template>
 	<view class="flow_box">
-		<!-- <button class="btn" type="default" @click="add()">增加数据</button> -->
-		<custom-waterfalls-flow-vue3-2 @tapClick="tapClick" :value="data.list" :column="column" :columnSpace="2" :seat="2"
-			>
-			<!-- #ifdef MP-WEIXIN -->
-			<view class="item" v-for="(item,index) in data.list" :key="index" :slot="`slot${index}`">
-				<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{item.title}}</view>
-				<view class="flex-aic flexr-jsb color_ff0003">
-					<view><text class="font_16">¥</text><text class="font_28">299</text></view>
-					<text class="color_999 font_22">已售99999+</text>
-				</view>
-			</view>
-			<!-- #endif -->
-			<!-- #ifndef MP-WEIXIN -->
-			<template #card="cardData">
-				<view class="item" >
-					<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{cardData.data.title}}</view>
-					<view class="flex-aic flexr-jsb color_ff0003">
-						<view><text class="font_16">¥</text><text class="font_28">299</text></view>
-						<text class="color_999 font_22">已售99999+</text>
-					</view>
-				</view>
-			</template>
-			<!-- #endif -->
-		</custom-waterfalls-flow-vue3-2>
+		
 	</view>
 </template>
 <script setup>
@@ -33,35 +10,7 @@
 		computed
 	} from 'vue';
 	const data = reactive({
-		list: [{
-				image: 'https://via.placeholder.com/200x500.png/ff0000',
-				title: '睡裙女夏季冰丝睡衣少女士性感',
-			},
-			{
-				image: 'https://via.placeholder.com/200x200.png/2878ff',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/200x100.png/FFB6C1',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/200x300.png/9400D3',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/100x240.png/B0E0E6',
-				title: '古驰香水古驰香水古驰香水古驰香水古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/140x280.png/7FFFAA',
-				title: '古驰香水',
-			},
-			{
-				image: 'https://via.placeholder.com/40x60.png/EEE8AA',
-				title: '古驰香水',
-			},
-		]
+		list: []
 	})
 	const column = ref(2);
 

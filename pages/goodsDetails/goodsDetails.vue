@@ -46,6 +46,9 @@
 	import {
 		ref
 	} from "vue";
+	import {
+		getdetail 
+	} from "../../api/api_method.js"
 	let goodsSkuRef = ref()
 	const htmlSnip =
 	`<div style="text-align:center;"><img style="width: 100%;" src="https://img1.baidu.com/it/u=1147992555,4285883113&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"/></div>
@@ -71,6 +74,10 @@
 	}
 	const goodsTapPay = () => {
 		goodsSkuRef.value.showSku()
+	}
+	const detail = aasync ()=>{
+		let zt = await getdetail(10)
+		console.log(zt);
 	}
 </script>
 

@@ -1,8 +1,19 @@
+
 import axios from "./axios.js"
+import ajax from "./api"
 // 首页列表
-export function getHomeList (page =1){
-    return axios({
-        method: 'get',
-        url: "/hotList?page=" + page
-    })
-}
+
+const baseUrl = "http://47.113.230.184:5566"
+export function getHome() {
+	return ajax({
+		url: baseUrl,
+		method: 'GET'
+	})
+};
+export function getHotlist(page) {
+	return ajax({
+		url: baseUrl+'hotlist?page='+page,
+		method: 'GET'
+	})
+};
+
