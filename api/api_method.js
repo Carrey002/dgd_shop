@@ -1,6 +1,17 @@
+
 import axios from "./axios.js"
+import ajax from "./api"
 // 首页列表
-export function getHomeList (page =1){
+
+const baseUrl = "http://47.113.230.184:5566"
+export function getHome() {
+	return ajax({
+		url: baseUrl,
+		method: 'GET'
+	})
+};
+// 首页列表
+export function getHomeList (page){
     return axios({
         method: 'get',
         url: "/hotList?page=" + page
@@ -54,3 +65,11 @@ export const getShopCar = () => {
         params: { token: param }
     })
 }
+export function getshopxq(id){
+	return axios({
+		url: '/detail?goodId='+id,
+		method: 'GET'
+	})
+}
+
+
