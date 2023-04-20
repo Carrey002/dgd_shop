@@ -1,18 +1,29 @@
 <template>
 	<view class="flow_box">
-		<view class="shop_list" v-for="(item,index) in list" key="index" @click="todetail(item.Id)">
-			<img :src="item.imageUrl" alt="" class="img">
-			<p class="price">
-				<span class="price-tb">￥</span>
-				<span>{{item.priceStr}}</span>
-			</p>
-			<p class="bq">
-				<span class="bp">爆品</span>
-				<span class="yqp">一起拼</span>
-			</p>
-			<p class="title">{{item.title}}</p>
-			<p class="hp">{{item.evaluate}}条好评</p>
-		</view>
+		<!-- <button class="btn" type="default" @click="add()">增加数据</button> -->
+		<custom-waterfalls-flow-vue3-2 @tapClick="tapClick" :value="data.list" :column="column" :columnSpace="2" :seat="2"
+			>
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="item" v-for="(item,index) in data.list" :key="index" :slot="`slot${index}`">
+				<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{item.title}}</view>
+				<view class="flex-aic flexr-jsb color_ff0003">
+					<view><text class="font_16">¥</text><text class="font_28">299</text></view>
+					<text class="color_999 font_22">已售99999+</text>
+				</view>
+			</view>
+			<!-- #endif -->
+			<!-- #ifndef MP-WEIXIN -->
+			<template #card="cardData">
+				<view class="item" >
+					<view class="title m_b_16 color_333 font_28 text_nowrap_2">{{cardData.data.title}}</view>
+					<view class="flex-aic flexr-jsb color_ff0003">
+						<view><text class="font_16">¥</text><text class="font_28">299</text></view>
+						<text class="color_999 font_22">已售99999+</text>
+					</view>
+				</view>
+			</template>
+			<!-- #endif -->
+		</custom-waterfalls-flow-vue3-2>
 	</view>
 </template>
 <script setup>
@@ -21,92 +32,71 @@
 		reactive,
 		computed
 	} from 'vue';
-	import {
-		getHomeList
-	} from "@/api/api_method.js"
-	import {
-			onReachBottom,
-			onLoad,
-		 } from '@dcloudio/uni-app';
-	let page = ref(1)
-	let list = ref([])
-	let getlist = async () => {
-		let zt = await getHomeList(page.value)
-		console.log(zt.data);
-		list.value = zt.data
+	const data = reactive({
+		list: [{
+				image: 'https://via.placeholder.com/200x500.png/ff0000',
+				title: '睡裙女夏季冰丝睡衣少女士性感',
+			},
+			{
+				image: 'https://via.placeholder.com/200x200.png/2878ff',
+				title: '古驰香水',
+			},
+			{
+				image: 'https://via.placeholder.com/200x100.png/FFB6C1',
+				title: '古驰香水',
+			},
+			{
+				image: 'https://via.placeholder.com/200x300.png/9400D3',
+				title: '古驰香水',
+			},
+			{
+				image: 'https://via.placeholder.com/100x240.png/B0E0E6',
+				title: '古驰香水古驰香水古驰香水古驰香水古驰香水',
+			},
+			{
+				image: 'https://via.placeholder.com/140x280.png/7FFFAA',
+				title: '古驰香水',
+			},
+			{
+				image: 'https://via.placeholder.com/40x60.png/EEE8AA',
+				title: '古驰香水',
+			},
+		]
+	})
+	const column = ref(2);
+
+	function add() {
+		const newArr = [{
+				image: 'https://via.placeholder.com/58x100.png/FF7F50',
+				title: '我是标题8',
+			},
+			{
+				image: 'https://via.placeholder.com/59x100.png/C0C0C0',
+				title: '我是标题9',
+			},
+			{
+				image: 'https://via.placeholder.com/60x100.png/FAEBD7',
+				title: '我是标题10',
+			}
+		]
+		data.list = data.list.concat(newArr);
 	}
-	let todetail = (e)=>{
-		console.log(e);
+	const tapClick = (item) => {
+		console.log(item)
 		uni.navigateTo({
-			url:'/pages/goodsDetails/goodsDetails?id='+e
+			url: '/pages/goodsDetails/goodsDetails'
 		})
 	}
-	onLoad(()=>{
-		getlist()
-	})
-	onReachBottom(()=>{
-		console.log("触底了");
-	})
 </script>
 <style lang="scss" scoped>
 	.flow_box {
 		padding: 0 32rpx;
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
 	}
-
-	.shop_list {
-		width: 343rpx;
-		height: 380rpx;
-		margin-top: 30rpx;
-
-		.img {
-			width: 100%;
-		}
-
-		.price {
-			font-size: 32rpx;
-			color: #F7A701;
-
-			.price-tb {
-				font-size: 22rpx
-			}
-		}
-
-		.bq {
-			font-size: 18rpx;
-
-			.bp {
-				border: none;
-				background-color: #AB7FD1;
-				color: white;
-				padding: 3rpx 8rpx;
-				display: inline-block;
-				vertical-align: middle;
-			}
-
-			.yqp {
-				border: 1rpx solid #FC6291;
-				color: #FC6291;
-				display: inline-block;
-				vertical-align: middle;
-				margin-left: 10rpx;
-			}
-		}
-
+	.item {
+		padding-top: 16rpx;
 		.title {
-			font-size: 28rpx;
-			margin-top: 8rpx;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis
-		}
-
-		.hp {
-			font-size: 18rpx;
-			color: #666;
-			margin-top: 12rpx;
+			max-height: 72rpx;
+			line-height: 28rpx;
 		}
 	}
 </style>
