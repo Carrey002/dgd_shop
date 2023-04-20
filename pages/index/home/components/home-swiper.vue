@@ -2,14 +2,9 @@
 	<view>
 		<swiper class="swiper" circular indicator-active-color="#fff" indicator-color="rgba(255,255,255,0.6)"
 			:indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-			<swiper-item class="swiper-item flexr-jsc flex-aic">
+			<swiper-item class="swiper-item flexr-jsc flex-aic" v-for="(item,index) in bannerlist" key="item">
 				<image mode="aspectFill" class="swiper-item-img"
-					src="https://img.zcool.cn/community/018b2d599bf315a80121ad7b7e5bfd.jpg@2o.jpg">
-				</image>
-			</swiper-item>
-			<swiper-item class="swiper-item flexr-jsc flex-aic">
-				<image mode="aspectFill" class="swiper-item-img"
-					src="https://img.zcool.cn/community/011fc458b9313da801219c7788e1e1.jpg@1280w_1l_2o_100sh.jpg">
+					:src="item.image">
 				</image>
 			</swiper-item>
 		</swiper>
@@ -17,7 +12,14 @@
 </template>
 
 <script setup>
-	
+	import {ref} from "vue"
+	import {getHome} from "../../../../api/api_method.js"
+	let bannerlist = ref([])
+	let getdata = async()=>{
+		let obj = await getHome()
+		bannerlist.value = obj.data.homeData.banners
+	}
+	getdata()
 </script>
 
 <style lang="scss" scoped>
