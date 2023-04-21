@@ -8,8 +8,8 @@
 					mode="aspectFill"></image>
 				<view class="flex-fitem">
 					<view class="m_b_16 flex flex-aife color_fff">
-						<text class="font_36 m_r_16">{{user_info.userName || '未登录'}}</text>
-						<view class="font_20 my_binding_box m_b_8">用户id：{{user_info.userId || 'xxx'}}</view>
+						<text class="font_36 m_r_16">铃铃铃</text>
+						<view class="font_20 my_binding_box m_b_8">已绑定</view>
 					</view>
 					<view  class="color_fff font_28">18888888888</view>
 				</view>
@@ -67,31 +67,7 @@
 
 <script setup>
 import myTools from './components/my-tools.vue'
-import {ref,onMounted} from 'vue'
-import {Dialog} from 'vant'
-const user_info = ref({})
-const token = ref('')
-onMounted(()=>{
-	console.log('加载完成')
-	user_info.value = uni.getStorageSync('user_info')
-	console.log(Boolean(user_info.value))
-	if(user_info.value){
-		token.value = uni.getStorageSync('token')
-	}else{
-		Dialog({
-		  title: '请先登录',
-		  message: '点击登录',
-		}).then(() => {
-		uni.navigateTo({
-			url:'/pages/login/login'
-		})
-		});
-	}
-})
-
-
-
-
+import {ref} from 'vue'
 const columns = ref([{
 	title:'我的秒杀',
 	pages:'',

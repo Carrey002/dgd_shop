@@ -6,14 +6,14 @@
 	</view>
 	<view class="shop_list_view">
 		<view class="bgc_fff shop_list_box">
-			<template v-for="item in carList">
+			<template v-for="item in 5">
 				<view class="flex flex-aic p_t_24">
 					<radio style="transform:scale(0.6)" checked="true" color="#fe5572" />
 					<image class="shop_item_img m_r_16"
 						src="https://img2.baidu.com/it/u=4208647514,3737071484&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=565"
 						mode="aspectFill"></image>
 					<view class="flex-fitem">
-						<view class="color_333 font_26 m_b_8">{{123}}</view>
+						<view class="color_333 font_26 m_b_8">古驰香水</view>
 						<view class="flex flex-aic m_b_4">
 							<view class="color_999 font_24 m_r_24">花香调；花悦绽放30ml</view>
 							<uni-icons type="bottom" size="14" color="#999999"></uni-icons>
@@ -50,15 +50,7 @@
 </template>
 
 <script setup>
-	import {ref,onMounted} from 'vue'
-	import { getShopCar} from '@/api/api_method.js'
-	const carList = ref([])
-	onMounted(async()=>{
-		let temp = await getShopCar()
-		console.log(temp)
-		carList.value = temp.data
-	})
-	
+
 </script>
 
 <style lang="scss" scoped>

@@ -5,7 +5,8 @@
 			"style": {
 				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTitleText": "首页",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"onReachBottomDistance": 150
 			}
 
 		}, {
@@ -26,9 +27,9 @@
 			}
 
 		}, {
-			"path": "pages/tabbar/class/class",
+			"path": "pages/tabbar/good/good",
 			"style": {
-				"navigationBarTitleText": "分类",
+				"navigationBarTitleText": "积分商城",
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#fe5572",
 				"enablePullDownRefresh": false
@@ -181,14 +182,6 @@
                 "enablePullDownRefresh": false
             }
             
-        },{
-            "path" : "pages/login/login",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "登录",
-                "enablePullDownRefresh": false
-            }
-            
         }
     ],
 	"globalStyle": {
@@ -210,8 +203,8 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/tabbar/class/class",
-				"text": "分类"
+				"pagePath": "pages/tabbar/good/good",
+				"text": "积分商城"
 			},
 			{
 				"pagePath": "pages/tabbar/shop/shop",
