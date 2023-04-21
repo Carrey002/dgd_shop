@@ -4,12 +4,22 @@
 			<img :src="item.imageUrl" alt="">
 			<p>{{item.title}}</p>
 		</div>
+		<skeleton :loading="loading" v-for="i in 2" key="i">
+		  <template #template>
+		    <div >
+				<skeleton-image />
+				<skeleton-paragraph :style="{ margin:'5px 0'}" />
+		    </div>
+		  </template>
+		</skeleton>
+
 	</div>
 </template>
 
 <script setup>
 	import {ref,onBeforeMount} from 'vue'
 	import {getTypeTwoGoods} from '@/api/api_method.js'
+	import {Skeleton,SkeletonParagraph,SkeletonImage} from 'vant'
 	const props = defineProps({typeOne:String,typeTwo:String})
 	const typeOne = ref(props.typeOne)
 	const typeTwo = ref(props.typeTwo)
@@ -20,11 +30,13 @@
 		temp.forEach(item=>{
 			goodList.value.push(item)
 		})
+		loading.value = false
 	})
 	
 	const goDetail = (id)=>{
 		uni.navigateTo({ url:'/pages/goodsDetails/goodsDetails?id='+id })
 	}
+	const loading = ref(true)
 </script>
 
 <style scoped lang="scss">

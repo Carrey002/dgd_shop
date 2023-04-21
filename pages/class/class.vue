@@ -30,6 +30,7 @@
 	watchEffect(()=>{
 		console.log(activeIndex.value)
 	})
+	
 </script>
 
 <style lang="scss" scoped>

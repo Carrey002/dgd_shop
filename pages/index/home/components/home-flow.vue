@@ -21,9 +21,7 @@
 		reactive,
 		computed
 	} from 'vue';
-	import {
-		getHomeList
-	} from "@/api/api_method.js"
+	import {getHomeList} from "@/api/api_method.js"
 	import {
 			onReachBottom,
 			onLoad,
@@ -32,7 +30,6 @@
 	let list = ref([])
 	let getlist = async () => {
 		let zt = await getHomeList(page.value)
-		console.log(zt.data);
 		list.value = zt.data
 	}
 	let todetail = (e)=>{
@@ -44,8 +41,11 @@
 	onLoad(()=>{
 		getlist()
 	})
-	onReachBottom(()=>{
+	onReachBottom(async()=>{
 		console.log("触底了");
+		page.value++ 
+		let zt = await getHomeList(page.value)
+		list.value.push(...zt.data)
 	})
 </script>
 <style lang="scss" scoped>

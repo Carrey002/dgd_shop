@@ -1,27 +1,27 @@
 <template>
-	<view class="shop_tool_view">
+	<!-- <view class="shop_tool_view">
 		<view class="shop_tool_box flex-aic flexr-jfe boxs_bb pos_f bgc_fff">
 			<text>完成</text>
 		</view>
-	</view>
+	</view> -->
 	<view class="shop_list_view">
 		<view class="bgc_fff shop_list_box">
 			<template v-for="item in carList">
 				<view class="flex flex-aic p_t_24">
 					<radio style="transform:scale(0.6)" checked="true" color="#fe5572" />
 					<image class="shop_item_img m_r_16"
-						src="https://img2.baidu.com/it/u=4208647514,3737071484&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=565"
-						mode="aspectFill"></image>
+						:src="item.imageUrl"
+						mode="aspectFill" @click="goDetail(item.Id)"></image>
 					<view class="flex-fitem">
-						<view class="color_333 font_26 m_b_8">{{123}}</view>
+						<view class="color_333 font_26 m_b_8">{{item.title}}</view>
 						<view class="flex flex-aic m_b_4">
-							<view class="color_999 font_24 m_r_24">花香调；花悦绽放30ml</view>
+							<view class="color_999 font_24 m_r_24">{{item.supplier}}</view>
 							<uni-icons type="bottom" size="14" color="#999999"></uni-icons>
 						</view>
 						<view class="flex-aic flexr-jsb">
 							<view class="color_ff0003">
 								<text class="font_28">¥</text>
-								<text class="font_40">277</text>
+								<text class="font_40">{{item.priceStr}}</text>
 							</view>
 							<lyz-input-num></lyz-input-num>
 						</view>
@@ -55,9 +55,13 @@
 	const carList = ref([])
 	onMounted(async()=>{
 		let temp = await getShopCar()
-		console.log(temp)
 		carList.value = temp.data
 	})
+	const goDetail =(id)=>{
+		uni.navigateTo({
+			url:'/pages/goodsDetails/goodsDetails?id='+id
+		})
+	}
 	
 </script>
 

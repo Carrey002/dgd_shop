@@ -8,10 +8,10 @@
 			<lyz-button borderColor="#fe5572" backgroundColor="#fe5572" title="去逛逛"></lyz-button>
 		</view> -->
 		<shop-goods-list></shop-goods-list>
-		<view class="shop_list bgc_fff">
+		<!-- <view class="shop_list bgc_fff">
 			<view class="color_333 font_32" style="padding: 24rpx 32rpx;">猜你喜欢</view>
 			<shop-flow></shop-flow>
-		</view>
+		</view> -->
 		<lyz-tab-bar pagePath="pages/tabbar/shop/shop"></lyz-tab-bar>
 	</view>
 </template>
@@ -19,6 +19,27 @@
 <script setup>
 	import shopFlow from './components/shop-flow.vue'
 	import shopGoodsList from './components/shop-goods-list.vue'
+	
+	
+	import {ref,onMounted} from 'vue'
+	import {showDialog} from 'vant'
+	const user_info = ref({})
+	const token = ref('')
+	onMounted(()=>{
+		user_info.value = uni.getStorageSync('user_info')
+		if(user_info.value){
+			token.value = uni.getStorageSync('token')
+		}else{
+			showDialog({
+			  title: '请先登录',
+			  message: '点击登录',
+			}).then(() => {
+			uni.navigateTo({
+				url:'/pages/login/login'
+			})
+			});
+		}
+	})
 </script>
 
 <style lang="scss">

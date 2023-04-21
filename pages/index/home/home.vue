@@ -38,7 +38,6 @@
 	let arrlist = ref([])
 	let getdata = async () => {
 		let obj = await getHome()
-		console.log(obj);
 		list.value = obj.data.homeData.oneLevelCategoryList
 		arrlist.value = list.value.map((ele, index) => {
 			return {

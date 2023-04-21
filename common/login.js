@@ -1,4 +1,4 @@
-import {getMinProLoginInfo} from '@/api/loginApi.js'
+// import {getMinProLoginInfo} from '@/api/loginApi.js'
 /**
  * 微信登陆方法
  * @param {Function} callback  登陆信息回调

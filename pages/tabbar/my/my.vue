@@ -68,7 +68,7 @@
 <script setup>
 import myTools from './components/my-tools.vue'
 import {ref,onMounted} from 'vue'
-import {Dialog} from 'vant'
+import {showDialog} from 'vant'
 const user_info = ref({})
 const token = ref('')
 onMounted(()=>{
@@ -78,7 +78,7 @@ onMounted(()=>{
 	if(user_info.value){
 		token.value = uni.getStorageSync('token')
 	}else{
-		Dialog({
+		showDialog({
 		  title: '请先登录',
 		  message: '点击登录',
 		}).then(() => {
@@ -116,6 +116,11 @@ const columns = ref([{
 	title:'优惠券',
 	pages:'/pages/coupon/coupon',
 	icon:'http://www.liwanying.top/applate-icon/youhuiquan@2x.png'
+},
+{
+	title:'设置',
+	pages:'/pages/setting/setting',
+	icon:'https://img95.699pic.com/element/40025/3071.png_860.png'
 }])
 const toOrder = (val) => {
 	uni.navigateTo({
