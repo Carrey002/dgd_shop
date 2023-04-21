@@ -5,8 +5,7 @@
 			"style": {
 				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTitleText": "首页",
-				"enablePullDownRefresh": false,
-				"onReachBottomDistance": 150
+				"enablePullDownRefresh": false
 			}
 
 		}, {

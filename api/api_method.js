@@ -1,6 +1,5 @@
 import axios from "./axios.js"
-
-import ajax from "./api"// 首页列表
+// 首页列表
 export function getHomeList (page =1){
     return axios({
         method: 'get',
@@ -54,10 +53,4 @@ export const getShopCar = () => {
         url: `/shopList`,
         params: { token: param }
     })
-}
-export function getshopxq(id){
-	return axios({
-		url: '/detail?goodId='+id,
-		method: 'GET'
-	})
 }
