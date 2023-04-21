@@ -6,8 +6,6 @@ const app = axios.create({
     timeout: 2000
 })
 
-// console.log(this.$store.getters.token);
-
 // 请求拦截
 app.interceptors.request.use(config => {
     if (localStorage.getItem("token")) {
