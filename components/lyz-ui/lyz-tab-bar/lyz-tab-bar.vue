@@ -40,8 +40,8 @@
 							selectedIconPath: 'http://www.liwanying.top/applate-icon/shouyexuanzhong.png'
 						},
 						{
-							text: "积分商城",
-							pagePath:'pages/tabbar/good/good',
+							text: "分类",
+							pagePath:'pages/tabbar/class/class',
 							iconPath: 'http://www.liwanying.top/applate-icon/jifenshangcheng.png',
 							selectedIconPath: 'http://www.liwanying.top/applate-icon/jifenshangchengxuanzhong.png'
 						},

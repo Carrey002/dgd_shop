@@ -27,9 +27,9 @@
 			}
 
 		}, {
-			"path": "pages/tabbar/good/good",
+			"path": "pages/tabbar/class/class",
 			"style": {
-				"navigationBarTitleText": "积分商城",
+				"navigationBarTitleText": "分类",
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor": "#fe5572",
 				"enablePullDownRefresh": false
@@ -182,6 +182,14 @@
                 "enablePullDownRefresh": false
             }
             
+        },{
+            "path" : "pages/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "登录",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
 	"globalStyle": {
@@ -203,8 +211,8 @@
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/tabbar/good/good",
-				"text": "积分商城"
+				"pagePath": "pages/tabbar/class/class",
+				"text": "分类"
 			},
 			{
 				"pagePath": "pages/tabbar/shop/shop",
